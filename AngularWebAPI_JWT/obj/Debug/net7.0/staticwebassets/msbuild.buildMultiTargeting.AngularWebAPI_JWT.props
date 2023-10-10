@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\AngularWebAPI_JWT.props" />
+</Project>
