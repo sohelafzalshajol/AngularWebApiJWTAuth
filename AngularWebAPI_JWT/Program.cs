@@ -1,7 +1,16 @@
+using AngularWebAPI_JWT.Configurations;
+using AngularWebAPI_JWT.Data;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
+builder.Services.Configure<JwtConfig>(builder.Configuration.GetSection(key:"JwtConfig"));
+builder.Services.AddDbContext<ApiDbContext>(optionsAction: options => options.UseSqlite(builder.Configuration.GetConnectionString(name: "DefaultConnection")));
+
+//end of services added by me
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
